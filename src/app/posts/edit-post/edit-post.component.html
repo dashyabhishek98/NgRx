@@ -2,13 +2,14 @@
     <div class="col-md-12">
         <h3>Update post</h3>
         <hr/>
-        <form (ngSubmit)="onUpdatePost()">
+        <form [formGroup] = "postForm" (ngSubmit)="onUpdatePost()">
             <div class="mb-3">
                 <label>Title</label>
-                <input type="text" class="form-control" formControlname="title" />
-                <!-- <div *ngIf="postForm.get('title').touched && !postForm.get('title').valid"></div>
-                <div *ngIf="postForm.get('title')">Title is required</div> -->
-                <!-- <div *ngIf="postForm.get('title').errors !=null && postForm.get('title').errors.minlength">Title should be minimum 6 characters</div> -->
+                <input type="text" class="form-control" formControlName="title"/>
+                <div *ngIf="postForm.controls['title'].touched && !postForm.controls['title'].valid">
+                    <div *ngIf="postForm.controls['title'].errors.required">Title is required</div>
+                    <div *ngIf="postForm.controls['title'].errors.minlength">Title should be minimum 6 characters</div>
+                </div>
             </div>
             <div>
                 <label>Description</label>
@@ -16,7 +17,7 @@
                 <div>{{ showErrorDescription() }}</div>
             </div>
             <div>
-                <button type="submit" class="btn btn-primary" [disabled]="postForm.valid">Add Post</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!this.postForm.valid">Add Post</button>
             </div>
         </form>
     </div>
