@@ -30,7 +30,7 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingmodule,
-    StoreModule.forRoot(appReducer),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
